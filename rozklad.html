@@ -8,69 +8,77 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500&display=swap');
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Barlow Condensed',Arial,sans-serif;background:#0d0d14;color:#f0f0f0;min-height:100vh}
+  :root{
+    --bg0:#0c0c0e;--bg1:#141416;--bg2:#1c1c1f;--bg3:#242428;--bg4:#2e2e33;
+    --b1:#333338;--b2:#3e3e44;--b3:#4a4a52;
+    --t1:#f2f2f4;--t2:#b8b8c0;--t3:#7a7a84;--t4:#4e4e58;
+    --acc:#e8e8ee;--acc2:#c8c8d4;
+  }
+  body{font-family:'Barlow Condensed',Arial,sans-serif;background:var(--bg0);color:var(--t1);min-height:100vh}
   input,textarea,button{font-family:inherit}
   input[type=number]{-moz-appearance:textfield}
   input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none}
-  ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#333}
+  ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--b3)}
 
   .app{max-width:480px;margin:0 auto;padding-bottom:40px}
-  .topnav{background:#13131e;border-bottom:1px solid #1e1e2e;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+  .topnav{background:var(--bg1);border-bottom:1px solid #1e1e2e;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
   .topnav-title{font-weight:800;font-size:18px;letter-spacing:1px}
-  .topnav-btns{display:flex;gap:6px}
-  .nav-btn{background:#1e1e2e;border:1px solid #2a2a3e;color:#aaa;border-radius:6px;padding:5px 12px;font-size:12px;letter-spacing:1px;cursor:pointer;transition:all .15s}
+  .topnav-btns{display:flex;gap:5px}
+  .nav-btn{background:var(--bg3);border:1px solid var(--b2);color:var(--t3);border-radius:6px;padding:5px 9px;font-size:11px;letter-spacing:1px;cursor:pointer;transition:all .15s}
   .nav-btn:hover{filter:brightness(1.2)}
-  .back-btn{background:#1e1e2e;border:1px solid #2a2a3e;color:#aaa;border-radius:6px;padding:4px 10px;font-size:18px;cursor:pointer;transition:all .15s;display:none}
+  .back-btn{background:var(--bg3);border:1px solid var(--b2);color:var(--t3);border-radius:6px;padding:4px 10px;font-size:18px;cursor:pointer;transition:all .15s;display:none}
   .page{padding:16px;display:none;animation:fadeIn .2s ease}
   .page.active{display:block}
   @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
   /* STAT CARDS */
   .stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px}
-  .stat-card{background:#1a1a26;border-radius:10px;padding:12px 8px;text-align:center;border-top:3px solid var(--c)}
-  .stat-label{font-size:10px;color:#888;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
-  .stat-val{font-size:20px;font-weight:800;color:var(--c)}
-  .stat-unit{font-size:11px;color:#888;margin-left:2px}
+  .stat-card{background:var(--bg2);border-radius:10px;padding:12px 8px;text-align:center;border-top:2px solid var(--b3)}
+  .stat-label{font-size:10px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+  .stat-val{font-size:20px;font-weight:800;color:var(--t1)}
+  .stat-unit{font-size:11px;color:var(--t3);margin-left:2px}
 
   /* DAY CARDS */
-  .section-label{font-size:11px;letter-spacing:3px;color:#555;text-transform:uppercase;margin-bottom:10px}
-  .day-card{background:#13131e;border:1px solid var(--c,#333);border-left:4px solid var(--c,#333);border-radius:10px;padding:14px 16px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all .2s}
+  .section-label{font-size:11px;letter-spacing:3px;color:var(--t4);text-transform:uppercase;margin-bottom:10px}
+  .day-card{background:var(--bg1);border:1px solid var(--c,#333);border-left:4px solid var(--c,#333);border-radius:10px;padding:14px 16px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all .2s}
   .day-card:hover{transform:translateY(-2px);filter:brightness(1.1)}
   .day-badge{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;margin-right:12px}
   .day-info{flex:1}
   .day-name{font-weight:700;font-size:15px}
-  .day-last{font-size:11px;color:#666;margin-top:2px}
+  .day-last{font-size:11px;color:var(--t4);margin-top:2px}
   .day-arrow{font-size:20px}
 
   /* WEIGHT TRACKER */
-  .weight-box{background:#13131e;border:1px solid #1e1e2e;border-radius:10px;padding:14px;margin-top:20px}
+  .weight-box{background:var(--bg1);border:1px solid var(--b1);border-radius:10px;padding:14px;margin-top:20px}
   .weight-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-  .weight-input{background:#1e1e2e;border:1px solid #2e2e3e;color:#fff;border-radius:6px;padding:8px 0;font-size:22px;font-weight:800;width:90px;text-align:center}
-  .weight-unit{color:#888;font-size:14px}
+  .weight-input{background:var(--bg3);border:1px solid var(--b2);color:#fff;border-radius:6px;padding:8px 0;font-size:22px;font-weight:800;width:90px;text-align:center}
+  .weight-unit{color:var(--t3);font-size:14px}
   .weight-status{flex:1;text-align:right;font-size:12px;font-weight:700}
-  .progress-bar-bg{background:#1e1e2e;border-radius:4px;height:6px;overflow:hidden}
+  .progress-bar-bg{background:var(--bg3);border-radius:4px;height:6px;overflow:hidden}
   .progress-bar-fill{height:100%;border-radius:4px;transition:width .4s ease}
-  .progress-labels{display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:#555}
+  .progress-labels{display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:var(--t4)}
 
   /* LOG PAGE */
-  .ex-block{background:#13131e;border:1px solid #1e1e2e;border-radius:10px;margin-bottom:10px;overflow:hidden}
+  .ex-block{background:var(--bg1);border:1px solid var(--b1);border-radius:10px;margin-bottom:10px;overflow:hidden}
   .ex-header{padding:8px 14px;border-bottom:1px solid #1e1e2e;display:flex;align-items:center;gap:8px}
   .ex-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
-  .ex-title{font-weight:700;font-size:14px}
+  .ex-title{font-weight:700;font-size:14px;flex:1}
+  .info-btn{width:22px;height:22px;border-radius:50%;border:1px solid var(--b3);background:var(--bg3);color:var(--t3);font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:800;transition:all .15s}
+  .info-btn:hover{border-color:var(--b3);color:var(--t2);background:var(--bg4)}
   .sets-area{padding:8px 14px}
-  .sets-head{display:grid;grid-template-columns:40px 1fr 1fr 44px;gap:6px;margin-bottom:6px;font-size:10px;color:#666;letter-spacing:1px;text-transform:uppercase}
+  .sets-head{display:grid;grid-template-columns:40px 1fr 1fr 44px;gap:6px;margin-bottom:6px;font-size:10px;color:var(--t4);letter-spacing:1px;text-transform:uppercase}
   .set-row{display:grid;grid-template-columns:40px 1fr 1fr 44px;gap:6px;margin-bottom:6px;align-items:center}
-  .set-num{width:28px;height:28px;border-radius:6px;background:#1e1e2e;display:flex;align-items:center;justify-content:center;font-size:12px;color:#888;font-weight:700}
-  .set-input{background:#1e1e2e;border:1px solid #2e2e3e;color:#fff;border-radius:6px;padding:6px 0;font-size:16px;font-weight:700;width:100%;text-align:center}
+  .set-num{width:28px;height:28px;border-radius:6px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t3);font-weight:700}
+  .set-input{background:var(--bg3);border:1px solid var(--b2);color:#fff;border-radius:6px;padding:6px 0;font-size:16px;font-weight:700;width:100%;text-align:center}
   .set-input.done{border-color:var(--dc,#555)}
-  .set-done-btn{width:36px;height:36px;border-radius:8px;background:#1e1e2e;border:2px solid #2e2e3e;color:#555;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
-  .set-done-btn.active{color:#fff;background:var(--dc);border-color:var(--dc)}
+  .set-done-btn{width:36px;height:36px;border-radius:8px;background:var(--bg3);border:2px solid #2e2e3e;color:var(--t4);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+  .set-done-btn.active{color:var(--bg0);background:var(--acc);border-color:var(--acc)}
   .set-row.completed{opacity:.5}
 
-  .extra-box{background:#13131e;border:1px solid #1e1e2e;border-radius:10px;padding:14px;margin-bottom:10px}
-  .extra-label{font-size:11px;color:#888;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
-  .cardio-input{background:#1e1e2e;border:1px solid #2e2e3e;color:#fff;border-radius:6px;padding:8px 12px;font-size:22px;font-weight:800;width:100px;text-align:center}
-  .notes-input{background:#1e1e2e;border:1px solid #2e2e3e;color:#fff;border-radius:6px;padding:8px 12px;font-size:13px;width:100%;min-height:70px;resize:vertical;font-family:'Barlow',sans-serif;line-height:1.5}
+  .extra-box{background:var(--bg1);border:1px solid var(--b1);border-radius:10px;padding:14px;margin-bottom:10px}
+  .extra-label{font-size:11px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+  .cardio-input{background:var(--bg3);border:1px solid var(--b2);color:#fff;border-radius:6px;padding:8px 12px;font-size:22px;font-weight:800;width:100px;text-align:center}
+  .notes-input{background:var(--bg3);border:1px solid var(--b2);color:#fff;border-radius:6px;padding:8px 12px;font-size:13px;width:100%;min-height:70px;resize:vertical;font-family:'Barlow',sans-serif;line-height:1.5}
   .save-btn{width:100%;color:#fff;border:none;border-radius:10px;padding:14px;font-size:16px;font-weight:800;letter-spacing:2px;cursor:pointer;transition:all .15s;margin-top:4px}
   .save-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
   .save-btn:active{transform:none}
@@ -79,31 +87,83 @@
   .saved-screen{text-align:center;padding:60px 0}
   .saved-icon{font-size:64px}
   .saved-title{font-size:24px;font-weight:800;margin-top:12px}
-  .saved-sub{color:#888;margin-top:6px;font-family:'Barlow',sans-serif}
+  .saved-sub{color:var(--t3);margin-top:6px;font-family:'Barlow',sans-serif}
 
   /* HISTORY */
-  .hist-card{background:#13131e;border-radius:10px;margin-bottom:8px;overflow:hidden;border:1px solid #1e1e2e;border-left:4px solid var(--hc,#555)}
+  .hist-card{background:var(--bg1);border-radius:10px;margin-bottom:8px;overflow:hidden;border:1px solid var(--b1);border-left:4px solid var(--hc,#555)}
   .hist-head{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
   .hist-name{font-weight:700;font-size:14px}
-  .hist-meta{font-size:11px;color:#666;margin-top:2px}
+  .hist-meta{font-size:11px;color:var(--t4);margin-top:2px}
   .hist-vol{font-size:13px;font-weight:700;text-align:right}
-  .hist-arrow{color:#555;font-size:14px;margin-top:2px}
-  .hist-body{padding:0 14px 12px;border-top:1px solid #1e1e2e;display:none}
+  .hist-arrow{color:var(--t4);font-size:14px;margin-top:2px}
+  .hist-body{padding:0 14px 12px;border-top:1px solid var(--b1);display:none}
   .hist-body.open{display:block}
-  .hist-ex-name{font-size:12px;color:#888;font-weight:700;margin:10px 0 4px}
+  .hist-ex-name{font-size:12px;color:var(--t3);font-weight:700;margin:10px 0 4px}
   .hist-sets{display:flex;flex-wrap:wrap;gap:4px}
   .hist-set-badge{border-radius:4px;padding:3px 8px;font-size:12px;border:1px solid}
-  .hist-notes{margin-top:10px;color:#888;font-size:12px;font-style:italic;border-top:1px solid #1e1e2e;padding-top:8px;font-family:'Barlow',sans-serif}
-  .del-btn{margin-top:10px;background:transparent;border:1px solid #e74c3c33;color:#e74c3c55;border-radius:6px;padding:4px 12px;font-size:11px;cursor:pointer}
-  .empty-state{text-align:center;padding:60px 0;color:#555}
+  .hist-notes{margin-top:10px;color:var(--t3);font-size:12px;font-style:italic;border-top:1px solid var(--b1);padding-top:8px;font-family:'Barlow',sans-serif}
+  .del-btn{margin-top:10px;background:transparent;border:1px solid var(--b3);color:var(--t4);border-radius:6px;padding:4px 12px;font-size:11px;cursor:pointer}
+  .empty-state{text-align:center;padding:60px 0;color:var(--t4)}
   .empty-icon{font-size:48px}
   .empty-text{margin-top:12px;font-family:'Barlow',sans-serif;font-size:14px;line-height:1.6}
 
   /* STATS PAGE */
   .stats2-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
   .pr-row{display:flex;justify-content:space-between;border-bottom:1px solid #1e1e2e;padding:7px 0;align-items:center}
-  .pr-name{font-size:12px;color:#ccc}
-  .pr-badge{background:#f39c1222;border:1px solid #f39c1255;color:#f39c12;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;letter-spacing:1px}
+  .pr-name{font-size:12px;color:var(--t2)}
+  .pr-badge{background:var(--bg3);border:1px solid var(--b3);color:var(--t2);border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;letter-spacing:1px}
+
+  /* MODAL */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:none;align-items:flex-end;justify-content:center}
+  .modal-overlay.open{display:flex}
+  .modal-box{background:var(--bg1);border:1px solid #2e2e4e;border-radius:16px 16px 0 0;width:100%;max-width:480px;padding:20px 20px 32px;animation:slideUp .25s ease}
+  @keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+  .modal-title{font-size:16px;font-weight:800;color:var(--t1);margin-bottom:8px}
+  .modal-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;background:var(--bg4);border-radius:4px;padding:2px 8px;color:var(--t3)8cc;margin-bottom:12px}
+  .modal-desc{font-family:'Barlow',sans-serif;font-size:14px;color:var(--t2);line-height:1.7}
+  .modal-close{width:100%;margin-top:16px;background:var(--bg3);border:1px solid var(--b2);color:var(--t3);border-radius:8px;padding:12px;font-size:14px;cursor:pointer;font-weight:700}
+
+  /* CALENDAR */
+  .cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .cal-nav-btn{background:var(--bg3);border:1px solid var(--b2);color:var(--t3);border-radius:6px;padding:6px 14px;font-size:16px;cursor:pointer}
+  .cal-month{font-size:16px;font-weight:800;letter-spacing:1px}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:16px}
+  .cal-dow{text-align:center;font-size:10px;color:var(--t4);letter-spacing:1px;padding:4px 0}
+  .cal-day{aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;background:var(--bg2);border:1px solid var(--b1);position:relative}
+  .cal-day.empty{background:transparent;border-color:transparent;cursor:default}
+  .cal-day.today{border-color:var(--b3)}
+  .cal-day.has-workout{color:#fff}
+  .cal-day.other-month{opacity:.3}
+  .cal-dot{width:5px;height:5px;border-radius:50%;margin-top:2px}
+  .cal-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .cal-leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t3)}
+  .cal-leg-dot{width:8px;height:8px;border-radius:50%}
+  .cal-detail{background:var(--bg1);border:1px solid var(--b1);border-radius:10px;padding:14px;margin-top:12px}
+  .cal-detail-title{font-size:14px;font-weight:700;margin-bottom:6px}
+  .cal-detail-meta{font-size:11px;color:var(--t3)}
+
+  /* HEALTH */
+  .health-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+  .health-field{background:var(--bg1);border:1px solid var(--b1);border-radius:10px;padding:12px}
+  .health-field.full{grid-column:1/-1}
+  .health-label{font-size:10px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+  .health-input{background:var(--bg3);border:1px solid var(--b2);color:#fff;border-radius:6px;padding:8px;font-size:20px;font-weight:800;width:100%;text-align:center}
+  .health-unit{font-size:11px;color:var(--t4);text-align:center;margin-top:3px}
+  .kcal-balance{background:var(--bg1);border:1px solid var(--b1);border-radius:10px;padding:16px;margin-bottom:12px;text-align:center}
+  .kcal-balance-label{font-size:10px;color:var(--t4);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+  .kcal-balance-val{font-size:32px;font-weight:800}
+  .kcal-balance-sub{font-size:12px;color:var(--t3);margin-top:4px;font-family:'Barlow',sans-serif}
+  .samsung-note{background:var(--bg2);border:1px solid var(--b2);border-radius:10px;padding:12px;margin-bottom:12px}
+  .samsung-note-title{font-size:11px;font-weight:800;color:var(--t2);letter-spacing:1px;margin-bottom:5px}
+  .samsung-note-text{font-size:12px;color:var(--t3);font-family:'Barlow',sans-serif;line-height:1.6}
+  .health-hist-card{background:var(--bg1);border:1px solid var(--b1);border-radius:10px;padding:12px;margin-bottom:8px}
+  .health-hist-date{font-size:11px;color:var(--t4);margin-bottom:8px}
+  .health-hist-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0}
+  .health-hist-key{font-size:12px;color:var(--t3)}
+  .health-hist-val{font-size:13px;font-weight:700}
+  .health-tabs{display:flex;gap:6px;margin-bottom:14px}
+  .htab{flex:1;background:var(--bg3);border:1px solid var(--b2);color:var(--t3);border-radius:6px;padding:8px;font-size:12px;cursor:pointer;text-align:center;font-weight:700;letter-spacing:1px}
+  .htab.active{background:var(--bg3);border-color:var(--b3);color:var(--t1)}
 </style>
 </head>
 <body>
@@ -115,6 +175,8 @@
       <span class="topnav-title" id="navTitle">⚡ ЩОДЕННИК</span>
     </div>
     <div class="topnav-btns" id="navBtns">
+      <button class="nav-btn" onclick="showPage('calendar')">📅</button>
+      <button class="nav-btn" onclick="showPage('health')">🩺</button>
       <button class="nav-btn" onclick="showPage('history')">ЖУРНАЛ</button>
       <button class="nav-btn" onclick="showPage('stats')">ПРОГРЕС</button>
     </div>
@@ -133,7 +195,7 @@
         <div class="weight-status" id="weightStatus"></div>
       </div>
       <div class="progress-bar-bg"><div class="progress-bar-fill" id="weightBar"></div></div>
-      <div class="progress-labels"><span>Старт: 86 кг</span><span>Мета: 80 кг</span></div>
+      <div class="progress-labels"><span>Старт: 85 кг</span><span>Мета: 80 кг</span></div>
     </div>
   </div>
 
@@ -151,53 +213,161 @@
   <div class="page" id="page-stats">
     <div id="statsContent"></div>
   </div>
+
+  <!-- CALENDAR PAGE -->
+  <div class="page" id="page-calendar">
+    <div id="calContent"></div>
+  </div>
+
+  <!-- HEALTH PAGE -->
+  <div class="page" id="page-health">
+    <div id="healthContent"></div>
+  </div>
+</div>
+
+<!-- INFO MODAL -->
+<div class="modal-overlay" id="infoModal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <div class="modal-tag" id="modalTag">ТЕХНІКА</div>
+    <div class="modal-title" id="modalTitle">Назва вправи</div>
+    <div class="modal-desc" id="modalDesc">Опис</div>
+    <button class="modal-close" onclick="closeInfoModal()">Зрозуміло ✓</button>
+  </div>
 </div>
 
 <script>
-// ── PLAN ──
+// ── PLAN ── PPL×2 | Рельєф | 85→80 кг | 47 р.
 const PLAN = [
-  {id:1,label:"Д1",focus:"Груди + Трицепс",color:"#e74c3c",
+  {id:1,label:"Пн",focus:"Push A — Груди · Плечі · Трицепс",color:"#4a4a52",sc:4,
    exercises:[
-    {name:"Тренажер жим груди",dw:0},{name:"Жим гантелей (плоска лава)",dw:12},
-    {name:"Розведення гантелей 30°",dw:8},{name:"Тренажер трицепс",dw:0},
-    {name:"Французький жим з гантеллю",dw:8}]},
-  {id:2,label:"Д2",focus:"Спина + Біцепс",color:"#2980b9",
+    {name:"Тренажер жим груді",dw:0,
+     desc:"Сідь рівно, лопатки зведені разом і притиснуті до спинки. Повільно опускай рукоятку (2 сек), вибухово жми вперед. Не розгинай руки до кінця — тримай напруження в грудях."},
+    {name:"Жим гантелей 30° (похила лава)",dw:12.5,
+     desc:"Лава під кутом 30°. Лікті під кутом 45° від корпусу — не розводь широко. Опускай гантелі до рівня верху грудей, жми вгору і трохи всередину в кінці. Акцент на верхній частині грудей."},
+    {name:"Жим гантелей горизонтально",dw:15,
+     desc:"Лежачи горизонтально. Гантелі на рівні грудей, лікті 45° від тулуба. Повна амплітуда — від розтяжки внизу до майже торкання гантелей вгорі. Відчуй роботу грудей, не рук."},
+    {name:"Жим гантелей над головою (сидячи)",dw:10,
+     desc:"Сидячи з прямою спиною. Гантелі на рівні вух, ліктями трохи вперед. Жми вгору без повного розгинання — залишай легкий згин у ліктях. Не прогинай поперек."},
+    {name:"Підйом у сторони (★ суперсет)",dw:8,
+     desc:"Суперсет — виконуй одразу після підйому вперед без паузи. Стоячи, гантелі по боках. Підіймай руки через сторони до паралелі підлозі. Повільно опускай 3 секунди. Без гойдання корпусом — не допомагай тілом."},
+    {name:"Підйом вперед (★ суперсет)",dw:8,
+     desc:"Суперсет — виконуй одразу після підйому в сторони без паузи. Гантелі перед стегнами, долоні вниз або нейтрально. Підіймай руки вперед до рівня плеча. Можна по черзі або обидві разом."},
+    {name:"Тренажер трицепс (push-down)",dw:0,
+     desc:"Стій прямо, лікті притиснуті до корпусу — вони нерухомі весь час! Тисни рукоятку вниз до повного розгинання рук, потім повільно повертай вгору. Тільки передпліччя рухаються."},
+    {name:"Французький жим (гантелі лежачи)",dw:10,
+     desc:"Лежачи горизонтально. Гантелі над лобом, ліктями строго вгору — не розводь. Опускай лише передпліччя вниз за голову — ліктями не ворушити. Розтяжка довгої голівки трицепса."}]},
+
+  {id:2,label:"Вт",focus:"Pull A — Спина · Біцепс · Задня дельта",color:"#424248",sc:4,
    exercises:[
-    {name:"Тренажер тяга (спина)",dw:0},{name:"Тяга гантелі в нахилі",dw:15},
-    {name:"Тяга двох гантелей у нахилі",dw:12},{name:"Згин рук стоячи",dw:10},
-    {name:"Молоткові згини",dw:10}]},
-  {id:3,label:"Д3",focus:"Плечі + Прес",color:"#f39c12",
+    {name:"Тренажер тяга зверху (широкий хват)",dw:0,
+     desc:"Широкий хват трохи ширше плечей. Тягни ЛІКТЯМИ вниз і назад — не кистями. В кінці зводь лопатки разом. Уяви що ліктями ламаєш щось донизу. Не гойдайся корпусом."},
+    {name:"Тяга гантелей у нахилі (двома руками)",dw:17.5,
+     desc:"Корпус паралельно підлозі або під кутом 45°, спина пряма. Тягни гантелі до нижньої частини живота, ліктями вздовж тіла. Лопатки зводь у кінці. Не крути корпусом."},
+    {name:"Тяга однієї гантелі у нахилі",dw:17.5,
+     desc:"Коліно і рука опорної сторони на лаві. Спина пряма і горизонтальна. Тягни гантель до стегна, веди ліктем вгору. Опускай до повного розгинання руки — повна амплітуда."},
+    {name:"Розведення у нахилі — задня дельта",dw:8,
+     desc:"Нахил 45-90°, руки вниз між ногами. Розводь руки через сторони, веди ліктями. Дуже повільно опускай — 3 секунди. Вага мала, але відчуття в задній дельті — сильне. Це ізоляція."},
+    {name:"Підйом на біцепс стоячи (★ суперсет)",dw:12.5,
+     desc:"Суперсет з молотком. Лікті притиснуті до боків — вони нерухомі весь рух! Згинай повільно до повного скорочення, повільно опускай до повного розгинання. Без гойдання корпусом."},
+    {name:"Молоток hammer curl (★ суперсет)",dw:12.5,
+     desc:"Одразу після підйому на біцепс без паузи. Нейтральний хват — долоні одна до одної. Той самий рух. Активує брахіаліс і плечопроменевий м'яз — товщина руки."},
+    {name:"Концентрований підйом на біцепс",dw:10,
+     desc:"Сидячи, лікоть упирається у внутрішню частину коліна. Повністю ізольований рух — жодного додаткового імпульсу. Відчуй пік скорочення у верхній точці — затримайся 1 сек."}]},
+
+  {id:3,label:"Ср",focus:"Legs A — Квадри · Сідниці · Ікри · Прес",color:"#3e3e46",sc:4,
    exercises:[
-    {name:"Тренажер бокова дельта",dw:0},{name:"Жим гантелей над головою",dw:12},
-    {name:"Підйом гантелей перед собою",dw:8},{name:"Тяга задня дельта",dw:8},
-    {name:"Тренажер прес",dw:0},{name:"Підйом ніг на лаві",dw:0}]},
-  {id:4,label:"Д4",focus:"Груди + Спина",color:"#8e44ad",
+    {name:"Goblet squat (присідання з гантеллю)",dw:20,
+     desc:"Тримай гантель вертикально обома руками біля грудей. Ноги на ширині плечей або трохи ширше, носки злегка назовні. Присідай до паралелі або нижче, коліна над носками. Спина пряма, корпус майже вертикальний."},
+    {name:"Румунська тяга з гантелями",dw:17.5,
+     desc:"Стоячи, гантелі перед стегнами. Зберігай природний прогин в попереку. Опускай гантелі повільно по ногах вниз — відчуй розтяжку задньої поверхні стегна. Коліна злегка зігнуті. Стоп коли спина починає округлятись."},
+    {name:"Випади з гантелями в ходьбі",dw:12.5,
+     desc:"Великий крок вперед, опускайся поки коліно задньої ноги майже не торкне підлогу (але не вдаряй). Передня стопа повністю на підлозі, коліно над носком але не виступає за нього. Потужно відштовхуйся і роби наступний крок."},
+    {name:"Сумо-присідання з гантеллю",dw:20,
+     desc:"Широка стійка (ширше 1.5 плеча), носки назовні 45°. Тримай одну гантель вертикально між ногами двома руками. Присідай — коліна йдуть чітко у напрямку носків. Акцент на привідних м'язах і сідницях."},
+    {name:"Підйом на носки (одна нога)",dw:8,
+     desc:"Стань носком на край лави або сходинки — для повної амплітуди вниз. Тримай гантель в руці тієї ж сторони. Опускайся максимально вниз (розтяжка), підіймайся максимально вгору. Тримайся за стіну для балансу."},
+    {name:"Тренажер прес",dw:0,
+     desc:"Видих при скороченні — обов'язково. Не допомагай руками — рухаєш тулубом. Уяви що тягнеш ребра до тазу. Повільно повертайся назад — не кидай вагу. Пауза 1 сек у верхній точці."},
+    {name:"Нахили убік з гантеллю",dw:10,
+     desc:"Стоячи, гантель в одній руці. Нахиляйся убік вниз з гантеллю, потім скорочуй бічний прес щоб повернутись. Тримай корпус рівним — не нахиляйся вперед чи назад. Рух суворо в бічній площині."}]},
+
+  {id:4,label:"Чт",focus:"Push B — Груди · Плечі · Трицепс (варіації)",color:"#464650",sc:4,
    exercises:[
-    {name:"Суперсет: жим груди",dw:0},{name:"Суперсет: тяга спини",dw:0},
-    {name:"Жим на похилій лаві 30°",dw:12},{name:"Пуловер з гантеллю",dw:12}]},
-  {id:5,label:"Д5",focus:"Руки + Прес",color:"#27ae60",
+    {name:"Жим гантелей горизонтально (основний)",dw:15,
+     desc:"Сьогодні це головний рух — дай йому максимум уваги. Концентруйся на відчутті грудей, а не на вазі. Повільно 3 сек вниз, вибухово вгору. Спробуй взяти на 2.5 кг більше ніж у Пн якщо можеш."},
+    {name:"Жим у тренажері — темп 3-1-2",dw:0,
+     desc:"Спеціальний темп: 3 сек вниз, 1 сек пауза в нижній точці (м'яз у розтяжці), 2 сек вгору. Набагато важче ніж звичайний темп — зменши звичну вагу на 30%. Час під навантаженням = м'язовий ріст."},
+    {name:"Жим Арнольда (сидячи)",dw:10,
+     desc:"Старт: долоні до тебе, руки на рівні підборіддя. Жмучи вгору — розвертай долоні від тебе (пронація). На піку — стандартна позиція жиму над головою. Назад — розвертай у зворотному порядку. Чудово для всіх головок дельти."},
+    {name:"Підйом у сторони (сидячи)",dw:8,
+     desc:"Сидячи — значно краща ізоляція ніж стоячи, бо неможливо гойдатися корпусом. Лікті злегка зігнуті. Підіймай строго до паралелі — не вище, інакше включаються трапеції. Повільно опускай."},
+    {name:"Тренажер трицепс (вузький хват)",dw:0,
+     desc:"Вузький хват і зміна кута активує медіальну (внутрішню) голівку трицепса. Лікті нерухомі і притиснуті до тіла. Повне розгинання кожного повторення. Відчуй скорочення у внутрішній частині."},
+    {name:"Кікбек з гантеллю (kickback)",dw:8,
+     desc:"Нахил вперед — корпус паралельно підлозі. Плече паралельно тулубу, рука зігнута 90°. Розгинай лише передпліччя назад до повністю прямої руки. Затримайся 1 сек у верхній точці — пік скорочення довгої голівки."}]},
+
+  {id:5,label:"Пт",focus:"Pull B — Спина · Біцепс · Задня дельта (варіації)",color:"#404048",sc:4,
    exercises:[
-    {name:"Тренажер трицепс",dw:0},{name:"Kickback з гантеллю",dw:8},
-    {name:"Згин рук сидячи",dw:10},{name:"Концентровані згини",dw:10},
-    {name:"Тренажер прес",dw:0},{name:"Бокові нахили з гантеллю",dw:12}]},
-  {id:6,label:"Д6",focus:"Кардіо + Все тіло",color:"#16a085",
+    {name:"Тренажер тяга (вузька ручка, зворотний хват)",dw:0,
+     desc:"Зворотний хват (долоні до себе) і вузька ручка. Це зміщує акцент на нижню частину широчайшого і підключає більше біцепса. Тягни до нижньої частини живота, зводь лопатки."},
+    {name:"Тяга гантелей у нахилі (зворотний хват)",dw:15,
+     desc:"Долоні вперед (супінація кисті). Мінімально змінює акцент — середина спини і більше залучення біцепса. Тягни до нижньої частини живота. Спина пряма, не крути корпусом."},
+    {name:"Тяга гантелі лежачи на похилій лаві",dw:10,
+     desc:"Ляж грудьми на лаву під кутом 30-45°. Гантель в одній руці, рука вниз. Тягни ліктем назад і вгору — задня дельта і верхня спина. Ця позиція повністю виключає гойдання корпусом — ідеальна ізоляція."},
+    {name:"Розведення у нахилі — повільний темп",dw:8,
+     desc:"3 секунди вниз — це критично важливо сьогодні. Задня дельта — слабкий м'яз, потребує ізоляції і часу під навантаженням. Вага мала, фокус — на відчутті. Не женися за кілограмами."},
+    {name:"Підйом на біцепс по черзі (★ суперсет)",dw:12.5,
+     desc:"Суперсет з молотком. По черзі — ліва, права. Це дає трохи часу відпочинку і дозволяє взяти трохи більше ваги ніж одночасний підйом. Лікоть нерухомий, супінуй кисть у верхній точці."},
+    {name:"Молоток hammer curl (★ суперсет)",dw:12.5,
+     desc:"Одразу після підйому по черзі — без паузи. Нейтральний хват, ті ж правила. Разом ці дві вправи повністю вичерпують біцепс і брахіаліс. Час під навантаженням — максимальний."},
+    {name:"Метод 21 на біцепс",dw:10,
+     desc:"Три частини без відпочинку між ними: 7 повторень нижньої половини амплітуди (від низу до середини), 7 повторень верхньої (від середини до верху), 7 повторень повної амплітуди. Це і є 21. Серйозне відчуття."}]},
+
+  {id:6,label:"Сб",focus:"Legs B — Задня поверхня · Ягодиці · Ікри · Прес",color:"#484850",sc:4,
    exercises:[
-    {name:"Тренажер жим груди (легко)",dw:0},{name:"Тренажер спина (легко)",dw:0},
-    {name:"Тренажер дельта (легко)",dw:0},{name:"Тренажер трицепс (легко)",dw:0},
-    {name:"Тренажер прес",dw:0}]},
+    {name:"Болгарські сплит-присідання",dw:12.5,
+     desc:"Задня нога — підйом на лаві. Передня нога далеко попереду, стопа повністю на підлозі. Опускайся прямо вниз поки заднє коліно майже не торкне підлогу. Якщо вперше — почни без ваги, відчуй баланс. Найефективніша вправа для сідниць."},
+    {name:"Мертва тяга на прямих ногах (гантелі)",dw:20,
+     desc:"Ноги майже прямі — легкий згин у колінах. Опускай гантелі по ногах вниз, відчуваючи розтяжку задньої поверхні. НІКОЛИ не округляй спину! Зупиняйся коли спина починає тягнутись або округлятись — це межа твоєї гнучкості сьогодні."},
+    {name:"Заходи на лаву з гантелями (step-up)",dw:12.5,
+     desc:"Ставай повністю на лаву однією ногою, підтягуй другу. Вся робота — на лаві, стопою яка вже стоїть. Опускайся повільно з контролем. Не відштовхуйся від підлоги — це обман."},
+    {name:"Бічні випади з гантелями",dw:10,
+     desc:"Широкий крок убік. Опускайся на одну ногу — коліно згинається, стежачи за носком. Друга нога залишається прямою. Корпус прямо. Добре для внутрішньої поверхні стегна і аддукторів."},
+    {name:"Підйом на носки двома ногами (лава)",dw:15,
+     desc:"Носки на краю лави для максимальної амплітуди вниз. Тримай гантель в одній або обох руках. Темп: повільно вниз 3 сек, швидко вгору, затримка 1 сек у верхній точці. Максимальна амплітуда — ключове."},
+    {name:"Тренажер прес",dw:0,
+     desc:"Сьогодні прогресія: або на 1-2 кг більша вага ніж у Середу, або на 2-3 більше повторень. Той самий контрольований темп. Видих при скороченні, пауза вгорі, повільно назад."},
+    {name:"Russian twist з гантеллю",dw:8,
+     desc:"Сидячи, ноги підняті і злегка зігнуті у колінах. Тримай гантель обома руками. Повертай корпус з гантеллю від боку до боку — одне торкання = 1 повторення. Видихай при кожному повороті. Нижня спина округлена — так правильно."}]},
+
+  {id:7,label:"Нд",focus:"Відновлення — Кардіо · Прес · Розтяжка",color:"#3c3c44",sc:3,
+   exercises:[
+    {name:"Біг на доріжці (5 км / ~30 хв)",dw:0,
+     desc:"Темп 6 хв/км — розмовний темп. Зона 65-75% максимального ЧСС. Не спринт, не гонка. Якщо задихаєшся так що не можеш говорити — сповільнись. Це активне відновлення: прокачуєш кров через м'язи, прискорюєш відновлення."},
+    {name:"Тренажер прес",dw:0,
+     desc:"Сьогодні легкий режим — акцент на відчуття і нейром'язовий зв'язок. Менша вага ніж у силові дні. Ідеальна техніка, повільний темп. Не женися за вагою."},
+    {name:"Планка пряма",dw:0,
+     desc:"Тіло — пряма лінія від п'ят до голови. Не піднімай таз і не опускай стегна. Напружуй прес, сідниці і тягни плечі від вух. Дихай рівно. Якщо не можеш утримати форму — зупинись, це сигнал."},
+    {name:"Підйоми ніг лежачи",dw:0,
+     desc:"Лежачи на спині. Підіймай прямі ноги до 90°, повільно опускай — не торкаючись підлоги. КРИТИЧНО: поперек притиснутий до підлоги весь час. Якщо піднімається — підіймай ноги менше."},
+    {name:"Розтяжка (20-25 хв)",dw:0,
+     desc:"Тримай кожну позицію 30-40 сек, 2 підходи. Груди: рука на стіні, розвернись від неї. Спина: поперечний нахил. Стегна: поза голуба або «цифра 4» лежачи. Плечі: рука за головою. Ікри: носок на стіні. НЕ пружинь — статична розтяжка."}]},
 ];
 
 // ── DATA ──
 function load(){
-  try{ return JSON.parse(localStorage.getItem('wj2') || '{"logs":[],"bw":86}'); }
-  catch{ return {logs:[],bw:86}; }
+  try{ return JSON.parse(localStorage.getItem('wj3') || '{"logs":[],"bw":85,"health":[]}'); }
+  catch{ return {logs:[],bw:85,health:[]}; }
 }
-function save(d){ localStorage.setItem('wj2', JSON.stringify(d)); }
+function save(d){ localStorage.setItem('wj3', JSON.stringify(d)); }
 let DB = load();
+if(!DB.health) DB.health = [];
 
 // ── HELPERS ──
 const fmt = d => new Date(d).toLocaleDateString('uk-UA',{day:'2-digit',month:'2-digit',year:'2-digit'});
+const fmtDate = d => new Date(d).toLocaleDateString('uk-UA',{day:'2-digit',month:'long'});
 const hex2rgba = (hex,a) => `rgba(${parseInt(hex.slice(1,3),16)},${parseInt(hex.slice(3,5),16)},${parseInt(hex.slice(5,7),16)},${a})`;
+const todayKey = () => new Date().toISOString().slice(0,10);
 
 // ── NAVIGATION ──
 let currentPage = 'home';
@@ -207,61 +377,57 @@ function showPage(name){
   document.getElementById('backBtn').style.display = name==='home'?'none':'block';
   document.getElementById('navBtns').style.display = name==='home'?'flex':'none';
   currentPage = name;
-  const titles = {home:'⚡ ЩОДЕННИК',log:'💪 ТРЕНУВАННЯ',history:'📋 ЖУРНАЛ',stats:'📊 ПРОГРЕС'};
-  document.getElementById('navTitle').textContent = titles[name]||'';
+  const titles = {home:'⚡ ЩОДЕННИК',log:'💪 ТРЕНУВАННЯ',history:'📋 ЖУРНАЛ',stats:'📊 ПРОГРЕС',calendar:'📅 КАЛЕНДАР',health:'🩺 ЗДОРОВ\u2019Я'};
+  document.getElementById('navTitle').textContent = titles[name]||''
   if(name==='home') renderHome();
   if(name==='history') renderHistory();
   if(name==='stats') renderStats();
+  if(name==='calendar') renderCalendar();
+  if(name==='health') renderHealth();
 }
 function goHome(){ showPage('home'); }
 
 // ── HOME ──
 function renderHome(){
-  // stats
   const logs = DB.logs;
   const week = logs.filter(l=>Date.now()-new Date(l.date)<7*86400000).length;
   const cardio = logs.reduce((a,l)=>a+(+l.cardioMin||0),0);
   document.getElementById('homeStats').innerHTML = `
-    <div class="stat-card" style="--c:#e74c3c">
+    <div class="stat-card" style="--c:var(--b3)">
       <div class="stat-label">Тренувань</div>
       <div class="stat-val">${logs.length}<span class="stat-unit">раз</span></div>
     </div>
-    <div class="stat-card" style="--c:#f39c12">
+    <div class="stat-card" style="--c:var(--b3)">
       <div class="stat-label">Тижень</div>
       <div class="stat-val">${week}<span class="stat-unit">раз</span></div>
     </div>
-    <div class="stat-card" style="--c:#2980b9">
+    <div class="stat-card" style="--c:var(--b3)">
       <div class="stat-label">Кардіо</div>
       <div class="stat-val">${cardio}<span class="stat-unit">хв</span></div>
     </div>`;
-
-  // days
   let html = '';
   PLAN.forEach(d=>{
     const last = [...logs].reverse().find(l=>l.dayId===d.id);
     const lastTxt = last ? `Останнє: ${fmt(last.date)}` : 'Ще не тренувався';
-    html += `<div class="day-card" style="--c:${d.color}22;border-left-color:${d.color};border-color:${d.color}33" onclick="startLog(${d.id})">
-      <div class="day-badge" style="background:${hex2rgba(d.color,.13)};border:1px solid ${hex2rgba(d.color,.33)};color:${d.color}">${d.label}</div>
-      <div class="day-info"><div class="day-name">${d.focus}</div><div class="day-last">${lastTxt}</div></div>
-      <div class="day-arrow" style="color:${d.color}">▶</div>
+    html += `<div class="day-card" style="--c:#3a3a42;border-left-color:#3a3a42;border-color:#2a2a2f;background:var(--bg1)" onclick="startLog(${d.id})">
+      <div class="day-badge" style="background:var(--bg3);border:1px solid var(--b2);color:var(--t2)">${d.label}</div>
+      <div class="day-info"><div class="day-name">${d.focus}</div><div class="day-last" style="color:var(--t4)">${lastTxt}</div></div>
+      <div class="day-arrow" style="color:var(--t4)">›</div>
     </div>`;
   });
   document.getElementById('dayList').innerHTML = html;
-
-  // weight
-  const w = DB.bw||86;
+  const w = DB.bw||85;
   document.getElementById('weightInput').value = w;
-  const pct = Math.min(100,Math.max(0,((86-w)/6)*100));
-  const color = w<=80?'#27ae60':'#e74c3c';
+  const pct = Math.min(100,Math.max(0,((85-w)/5)*100));
+  const color = w<=80?'var(--acc)':'var(--b3)';
   document.getElementById('weightBar').style.width = pct+'%';
   document.getElementById('weightBar').style.background = color;
   document.getElementById('weightStatus').innerHTML = `<span style="color:${color};font-weight:700">${w<=80?'✅ ЦІЛЬ!':'ще '+(w-80).toFixed(1)+' кг до мети'}</span>`;
 }
-
 function updateWeight(v){
-  DB.bw = +v||86; save(DB);
-  const pct = Math.min(100,Math.max(0,((86-DB.bw)/6)*100));
-  const color = DB.bw<=80?'#27ae60':'#e74c3c';
+  DB.bw = +v||85; save(DB);
+  const pct = Math.min(100,Math.max(0,((85-DB.bw)/5)*100));
+  const color = DB.bw<=80?'var(--acc)':'var(--b3)';
   document.getElementById('weightBar').style.width=pct+'%';
   document.getElementById('weightBar').style.background=color;
   document.getElementById('weightStatus').innerHTML=`<span style="color:${color};font-weight:700">${DB.bw<=80?'✅ ЦІЛЬ!':'ще '+(DB.bw-80).toFixed(1)+' кг до мети'}</span>`;
@@ -274,29 +440,47 @@ function startLog(dayId){
   const last = [...DB.logs].reverse().find(l=>l.dayId===dayId);
   currentForm = {
     dayId, dayLabel:day.focus, color:day.color,
-    cardioMin:20, notes:'',
+    cardioMin:0, notes:'',
     exercises: day.exercises.map((ex,ei)=>({
       name:ex.name,
-      sets:[0,1,2].map(si=>{
+      sets:Array.from({length:day.sc||4},(_,si)=>{
         const p = last?.exercises?.[ei]?.sets?.[si];
         return {weight:p?.weight??ex.dw, reps:p?.reps??12, done:false};
       })
     }))
   };
-  document.getElementById('navTitle').textContent = '💪 '+day.focus;
+  document.getElementById('navTitle').textContent = '💪 '+day.label;
   renderLog();
   showPage('log');
+}
+
+function showInfo(dayId, exIdx){
+  const day = PLAN.find(d=>d.id===dayId);
+  const ex = day.exercises[exIdx];
+  const typeMap={1:'PUSH A',2:'PULL A',3:'LEGS A',4:'PUSH B',5:'PULL B',6:'LEGS B',7:'ВІДНОВЛЕННЯ'};
+  document.getElementById('modalTag').textContent = typeMap[dayId]||'ТЕХНІКА';
+  document.getElementById('modalTitle').textContent = ex.name;
+  document.getElementById('modalDesc').textContent = ex.desc || 'Опис техніки відсутній.';
+  document.getElementById('infoModal').classList.add('open');
+}
+function closeInfoModal(){
+  document.getElementById('infoModal').classList.remove('open');
+}
+function closeModal(e){
+  if(e.target===document.getElementById('infoModal')) closeInfoModal();
 }
 
 function renderLog(){
   if(!currentForm){return;}
   const f = currentForm;
+  const day = PLAN.find(d=>d.id===f.dayId);
   let html = '';
   f.exercises.forEach((ex,ei)=>{
     html += `<div class="ex-block">
-      <div class="ex-header" style="background:${hex2rgba(f.color,.1)};border-bottom-color:${hex2rgba(f.color,.15)}">
-        <div class="ex-num" style="background:${hex2rgba(f.color,.2)};border:1px solid ${hex2rgba(f.color,.4)};color:${f.color}">${ei+1}</div>
+      <div class="ex-header" style="background:var(--bg2);border-bottom-color:var(--b1)">
+        <div class="ex-num" style="background:var(--bg4);border:1px solid var(--b3);color:var(--t2)">${ei+1}</div>
         <div class="ex-title">${ex.name}</div>
+        <button class="info-btn" onclick="showInfo(${f.dayId},${ei})">i</button>
       </div>
       <div class="sets-area">
         <div class="sets-head"><div>Підх.</div><div style="text-align:center">Вага (кг)</div><div style="text-align:center">Повт.</div><div style="text-align:center">✓</div></div>`;
@@ -308,25 +492,26 @@ function renderLog(){
         <div class="set-num">${si+1}</div>
         <input type="number" class="set-input" style="${inputBorder}" value="${s.weight}" oninput="updateSet(${ei},${si},'weight',this.value)">
         <input type="number" class="set-input" style="${inputBorder}" value="${s.reps}" oninput="updateSet(${ei},${si},'reps',this.value)">
-        <button class="set-done-btn ${btnClass}" style="--dc:${f.color}" id="db-${ei}-${si}" onclick="toggleDone(${ei},${si})">✓</button>
+        <button class="set-done-btn ${btnClass}" id="db-${ei}-${si}" onclick="toggleDone(${ei},${si})">✓</button>
       </div>`;
     });
     html += '</div></div>';
   });
-
   html += `<div class="extra-box">
     <div class="extra-label">🏃 Кардіо (хвилин)</div>
     <input type="number" class="cardio-input" value="${f.cardioMin}" oninput="currentForm.cardioMin=this.value">
   </div>
   <div class="extra-box">
+    <div class="extra-label">🔥 Витрачено ккал (з годинника)</div>
+    <input type="number" class="cardio-input" id="burnedInput" value="${f.burned||''}" placeholder="0" oninput="currentForm.burned=+this.value">
+  </div>
+  <div class="extra-box">
     <div class="extra-label">📝 Нотатки</div>
     <textarea class="notes-input" placeholder="Як відчував себе? Що болить? Що покращити..." oninput="currentForm.notes=this.value">${f.notes}</textarea>
   </div>
-  <button class="save-btn" style="background:${f.color};box-shadow:0 4px 20px ${hex2rgba(f.color,.3)}" onclick="saveLog()">✅ ЗБЕРЕГТИ ТРЕНУВАННЯ</button>`;
-
+  <button class="save-btn" style="background:var(--acc);color:var(--bg0);box-shadow:none" onclick="saveLog()">✅ ЗБЕРЕГТИ ТРЕНУВАННЯ</button>`;
   document.getElementById('logContent').innerHTML = html;
 }
-
 function updateSet(ei,si,field,val){
   currentForm.exercises[ei].sets[si][field] = +val||0;
 }
@@ -338,10 +523,8 @@ function toggleDone(ei,si){
   row.classList.toggle('completed',s.done);
   btn.classList.toggle('active',s.done);
   const c = currentForm.color;
-  const inputs = row.querySelectorAll('.set-input');
-  inputs.forEach(inp=>inp.style.borderColor=s.done?c+'66':'');
+  row.querySelectorAll('.set-input').forEach(inp=>inp.style.borderColor=s.done?'var(--b3)':'');
 }
-
 function saveLog(){
   const log = {...currentForm, date:new Date().toISOString(), id:Date.now()};
   DB.logs.push(log); save(DB);
@@ -370,17 +553,18 @@ function renderHistory(){
     (log.exercises||[]).forEach(ex=>{
       exHtml+=`<div class="hist-ex-name">${ex.name}</div><div class="hist-sets">`;
       ex.sets.forEach(s=>{
-        const col = s.done?day.color:'#555';
-        const bg = s.done?hex2rgba(day.color,.13):'#1e1e2e';
-        exHtml+=`<span class="hist-set-badge" style="background:${bg};border-color:${hex2rgba(col,.4)};color:${col}">${s.done?s.weight+'кг × '+s.reps:'—'}</span>`;
+        const col = s.done?'var(--t2)':'var(--t4)';
+        const bg = s.done?'var(--bg3)':'var(--bg2)';
+        exHtml+=`<span class="hist-set-badge" style="background:${bg};border-color:var(--b2);color:${col}">${s.done?s.weight+'кг × '+s.reps:'—'}</span>`;
       });
       exHtml+='</div>';
     });
+    const burnedHtml = log.burned?`<div style="font-size:11px;color:var(--t3);margin-top:4px">🔥 ${log.burned} ккал витрачено</div>`:'';
     const notesHtml = log.notes?`<div class="hist-notes">"${log.notes}"</div>`:'';
-    html+=`<div class="hist-card" style="--hc:${day.color};border-left-color:${day.color}">
+    html+=`<div class="hist-card" style="--hc:var(--b3);border-left-color:var(--b3)">
       <div class="hist-head" onclick="toggleHist('hb-${log.id}','ha-${log.id}')">
-        <div><div class="hist-name">${log.dayLabel}</div><div class="hist-meta">${fmt(log.date)} · ${done} підходів · ${log.cardioMin||0} хв кардіо</div></div>
-        <div><div class="hist-vol" style="color:${day.color}">${vol?vol+' кг':''}</div><div class="hist-arrow" id="ha-${log.id}">▼</div></div>
+        <div><div class="hist-name">${log.dayLabel}</div><div class="hist-meta">${fmt(log.date)} · ${done} підходів · ${log.cardioMin||0} хв кардіо</div>${burnedHtml}</div>
+        <div><div class="hist-vol" style="color:var(--t2)">${vol?vol+' кг':''}</div><div class="hist-arrow" id="ha-${log.id}">▼</div></div>
       </div>
       <div class="hist-body" id="hb-${log.id}">
         ${exHtml}${notesHtml}
@@ -406,44 +590,191 @@ function renderStats(){
   const totalKg = logs.reduce((a,l)=>(l.exercises||[]).reduce((b,ex)=>b+ex.sets.filter(s=>s.done).reduce((c,s)=>c+(s.weight*s.reps),0),a),0);
   const cardio = logs.reduce((a,l)=>a+(+l.cardioMin||0),0);
   const week = logs.filter(l=>Date.now()-new Date(l.date)<7*86400000).length;
-  const bw = DB.bw||86;
-  const pct = Math.min(100,Math.max(0,((86-bw)/6)*100));
-  const col = bw<=80?'#27ae60':'linear-gradient(90deg,#27ae60,#e74c3c)';
-
-  // pr per exercise
+  const totalBurned = logs.reduce((a,l)=>a+(+l.burned||0),0);
+  const bw = DB.bw||85;
+  const pct = Math.min(100,Math.max(0,((85-bw)/5)*100));
+  const col = 'var(--b3)';
   const pr={};
   logs.forEach(l=>(l.exercises||[]).forEach(ex=>ex.sets.forEach(s=>{
     if(s.done&&s.weight>0&&(!pr[ex.name]||s.weight>pr[ex.name]))pr[ex.name]=s.weight;
   })));
   const prHtml = Object.keys(pr).length
     ? Object.entries(pr).map(([n,w])=>`<div class="pr-row"><span class="pr-name">${n}</span><span class="pr-badge">${w} кг</span></div>`).join('')
-    : `<div class="empty-state"><div class="empty-icon">📊</div><div class="empty-text">Після перших тренувань тут<br>з'явиться твій прогрес</div></div>`;
-
+    : `<div class="empty-state"><div class="empty-icon">📊</div><div class="empty-text">Після перших тренувань тут<br>з\u2019явиться твій прогрес</div></div>`;
   document.getElementById('statsContent').innerHTML=`
     <div class="stats2-row">
-      <div class="stat-card" style="--c:#e74c3c"><div class="stat-label">Тренувань</div><div class="stat-val">${logs.length}<span class="stat-unit">раз</span></div></div>
-      <div class="stat-card" style="--c:#f39c12"><div class="stat-label">Об'єм</div><div class="stat-val">${Math.round(totalKg/1000)}<span class="stat-unit">т</span></div></div>
-      <div class="stat-card" style="--c:#2980b9"><div class="stat-label">Кардіо</div><div class="stat-val">${cardio}<span class="stat-unit">хв</span></div></div>
-      <div class="stat-card" style="--c:#27ae60"><div class="stat-label">Тижень</div><div class="stat-val">${week}<span class="stat-unit">раз</span></div></div>
+      <div class="stat-card" style="--c:var(--b3)"><div class="stat-label">Тренувань</div><div class="stat-val">${logs.length}<span class="stat-unit">раз</span></div></div>
+      <div class="stat-card" style="--c:var(--b3)"><div class="stat-label">Об&#39;єм</div><div class="stat-val">${Math.round(totalKg/1000)}<span class="stat-unit">т</span></div></div>
+      <div class="stat-card" style="--c:var(--b3)"><div class="stat-label">Кардіо</div><div class="stat-val">${cardio}<span class="stat-unit">хв</span></div></div>
+      <div class="stat-card" style="--c:var(--b3)"><div class="stat-label">Тижень</div><div class="stat-val">${week}<span class="stat-unit">раз</span></div></div>
+      <div class="stat-card" style="--c:var(--b3);grid-column:1/-1"><div class="stat-label">Загалом спалено (тренування)</div><div class="stat-val">${totalBurned}<span class="stat-unit">ккал</span></div></div>
     </div>
     <div class="weight-box" style="margin-bottom:12px">
       <div class="section-label">Прогрес ваги</div>
-      <div style="display:flex;justify-content:space-between;font-size:11px;color:#888;margin-bottom:6px"><span>86 кг</span><span>80 кг</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--t3);margin-bottom:6px"><span>85 кг</span><span>80 кг</span></div>
       <div class="progress-bar-bg" style="height:12px;border-radius:6px"><div class="progress-bar-fill" style="width:${pct}%;background:${col};border-radius:6px"></div></div>
-      <div style="text-align:center;margin-top:8px;font-size:16px;font-weight:800">${bw} кг <span style="font-size:12px;color:#888;font-weight:400">(${bw<=80?'✅ Ціль!':'залишилось '+(bw-80).toFixed(1)+' кг'})</span></div>
+      <div style="text-align:center;margin-top:8px;font-size:16px;font-weight:800">${bw} кг <span style="font-size:12px;color:var(--t3);font-weight:400">(${bw<=80?'✅ Ціль!':'залишилось '+(bw-80).toFixed(1)+' кг'})</span></div>
     </div>
     <div class="weight-box"><div class="section-label">Максимальна вага по вправах</div>${prHtml}</div>`;
+}
+
+// ── CALENDAR ──
+let calDate = new Date();
+function renderCalendar(){
+  const y = calDate.getFullYear(), m = calDate.getMonth();
+  const months = ['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'];
+  const dows = ['Пн','Вт','Ср','Чт','Пт','Сб','Нд'];
+  // build workout date map
+  const wmap = {};
+  DB.logs.forEach(l=>{
+    const k = l.date.slice(0,10);
+    if(!wmap[k]) wmap[k]=[];
+    wmap[k].push(l);
+  });
+  const firstDay = new Date(y,m,1);
+  let startDow = firstDay.getDay(); // 0=Sun
+  startDow = startDow===0?6:startDow-1; // convert to Mon=0
+  const daysInMonth = new Date(y,m+1,0).getDate();
+  const today = new Date();
+  const todayStr = today.toISOString().slice(0,10);
+
+  let dowHtml = dows.map(d=>`<div class="cal-dow">${d}</div>`).join('');
+  let cellHtml = '';
+  for(let i=0;i<startDow;i++) cellHtml+='<div class="cal-day empty"></div>';
+  for(let d=1;d<=daysInMonth;d++){
+    const ds = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const logs = wmap[ds]||[];
+    const isToday = ds===todayStr;
+    const hasDot = logs.length>0;
+    const dotHtml = hasDot?'<div class="cal-dot" style="background:var(--acc2)"></div>':'';
+    const bg = logs.length?'var(--bg3)':'var(--bg2)';
+    const border = isToday?'border:1px solid var(--b3)':'border:1px solid var(--b1)';
+    cellHtml+=`<div class="cal-day${logs.length?' has-workout':''}" style="background:${bg};${border}" onclick="showCalDay('${ds}')">${d}${dotHtml}</div>`;
+  }
+
+  const legendHtml = '';
+
+  document.getElementById('calContent').innerHTML=`
+    <div class="cal-header">
+      <button class="cal-nav-btn" onclick="calNav(-1)">‹</button>
+      <div class="cal-month">${months[m]} ${y}</div>
+      <button class="cal-nav-btn" onclick="calNav(1)">›</button>
+    </div>
+    <div class="cal-grid">${dowHtml}${cellHtml}</div>
+    <div class="cal-legend">${legendHtml}</div>
+    <div id="calDayDetail"></div>`;
+}
+function calNav(dir){
+  calDate = new Date(calDate.getFullYear(), calDate.getMonth()+dir, 1);
+  renderCalendar();
+}
+function showCalDay(ds){
+  const logs = DB.logs.filter(l=>l.date.slice(0,10)===ds);
+  if(!logs.length){document.getElementById('calDayDetail').innerHTML='';return;}
+  const d = new Date(ds+'T12:00:00').toLocaleDateString('uk-UA',{weekday:'long',day:'numeric',month:'long'});
+  let html = logs.map(log=>{
+    const day = PLAN.find(p=>p.id===log.dayId)||{color:'#555'};
+    const vol = (log.exercises||[]).reduce((a,ex)=>a+ex.sets.filter(s=>s.done).reduce((s2,s)=>s2+(s.weight*s.reps),0),0);
+    const done = (log.exercises||[]).reduce((a,ex)=>a+ex.sets.filter(s=>s.done).length,0);
+    return `<div class="cal-detail" style="border-left:3px solid var(--b3)">
+      <div class="cal-detail-title" style="color:var(--t2)">${log.dayLabel}</div>
+      <div class="cal-detail-meta">${done} підходів · ${vol?vol ? vol+' кг загального об&#39;єму · ' : ''}${log.cardioMin||0} хв кардіо${log.burned?' · 🔥 '+log.burned+' ккал':''}</div>
+      ${log.notes?`<div style="font-size:12px;color:var(--t3);margin-top:6px;font-style:italic">"${log.notes}"</div>`:''}
+    </div>`;
+  }).join('');
+  document.getElementById('calDayDetail').innerHTML=`<div style="font-size:11px;color:var(--t4);margin-top:14px;margin-bottom:6px;letter-spacing:2px;text-transform:uppercase">${d}</div>${html}`;
+}
+
+// ── HEALTH ──
+let healthTab = 'log';
+function renderHealth(){
+  const today = todayKey();
+  const todayH = DB.health.find(h=>h.date===today)||{date:today,consumed:0,burned:0,sleep:0,notes:''};
+  const bal = (todayH.consumed||0)-(todayH.burned||0);
+  const balColor = bal>300?'var(--t2)':bal<-200?'var(--acc)':'var(--acc)';
+  const balLabel = bal>0?`+${bal} ккал (надлишок)`:bal<0?`${bal} ккал (дефіцит)`:'Баланс нульовий';
+
+  const histHtml = [...DB.health].reverse().map(h=>{
+    const b = (h.consumed||0)-(h.burned||0);
+    const bc = 'var(--t2)';
+    return `<div class="health-hist-card">
+      <div class="health-hist-date">${fmtDate(h.date+'T12:00:00')}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;font-size:12px">
+        ${h.consumed?`<div style="color:var(--t3)">🍽 <b style="color:var(--t2)">${h.consumed}</b> ккал</div>`:''}
+        ${h.burned?`<div style="color:var(--t3)">🔥 <b style="color:var(--t2)">${h.burned}</b> ккал</div>`:''}
+        ${b?`<div style="color:var(--t3)">⚖ <b style="color:${bc}">${b>0?'+':''
+}${b}</b></div>`:''}
+        ${h.sleep?`<div style="color:var(--t3)">😴 <b style="color:var(--t2)">${h.sleep}</b> год</div>`:''}
+      </div>
+      ${h.notes?`<div style="font-size:11px;color:var(--t4);margin-top:6px;font-style:italic">"${h.notes}"</div>`:''}
+    </div>`;
+  }).join('');
+
+  document.getElementById('healthContent').innerHTML=`
+    <div class="health-tabs">
+      <div class="htab${healthTab==='log'?' active':''}" onclick="healthTab='log';renderHealth()">📥 Ввести дані</div>
+      <div class="htab${healthTab==='hist'?' active':''}" onclick="healthTab='hist';renderHealth()">📊 Журнал</div>
+    </div>
+    ${healthTab==='log'?`
+    <div class="kcal-balance">
+      <div class="kcal-balance-label">Баланс сьогодні</div>
+      <div class="kcal-balance-val" style="color:${balColor}">${bal>0?'+':''
+}${bal}</div>
+      <div class="kcal-balance-sub">${balLabel}</div>
+    </div>
+    <div class="samsung-note">
+      <div class="samsung-note-title">📱 SAMSUNG HEALTH</div>
+      <div class="samsung-note-text">Відкрий Samsung Health → переглянь витрачені калорії за тренування → введи сюди вручну. Кроки і пульс — також із додатку. Автоматична синхронізація потребує Android-додатку.</div>
+    </div>
+    <div class="health-grid">
+      <div class="health-field">
+        <div class="health-label">🍽 Спожито ккал</div>
+        <input type="number" class="health-input" id="hConsumed" value="${todayH.consumed||''}" placeholder="0" oninput="saveHealth()">
+        <div class="health-unit">ккал / день</div>
+      </div>
+      <div class="health-field">
+        <div class="health-label">🔥 Витрачено ккал</div>
+        <input type="number" class="health-input" id="hBurned" value="${todayH.burned||''}" placeholder="0" oninput="saveHealth()">
+        <div class="health-unit">ккал (годинник)</div>
+      </div>
+      <div class="health-field">
+        <div class="health-label">😴 Сон</div>
+        <input type="number" class="health-input" id="hSleep" value="${todayH.sleep||''}" placeholder="0" step="0.5" oninput="saveHealth()">
+        <div class="health-unit">годин</div>
+      </div>
+
+    </div>`:`
+    ${histHtml||'<div class="empty-state"><div class="empty-icon">🩺</div><div class="empty-text">Ще немає записів здоров&#39;я.<br>Заповни сьогоднішні дані!</div></div>'}
+    `}`;
+}
+function saveHealth(){
+  const today = todayKey();
+  const entry = {
+    date:today,
+    consumed:+document.getElementById('hConsumed')?.value||0,
+    burned:+document.getElementById('hBurned')?.value||0,
+    sleep:+document.getElementById('hSleep')?.value||0,
+
+  };
+  const idx = DB.health.findIndex(h=>h.date===today);
+  if(idx>=0) DB.health[idx]=entry; else DB.health.push(entry);
+  save(DB);
+  // update balance display
+  const bal = entry.consumed - entry.burned;
+  const balColor = bal>300?'var(--t2)':bal<-200?'var(--acc)':'var(--acc)';
+  const balLabel = bal>0?`+${bal} ккал (надлишок)`:bal<0?`${bal} ккал (дефіцит)`:'Баланс нульовий';
+  const bv = document.querySelector('.kcal-balance-val');
+  const bs = document.querySelector('.kcal-balance-sub');
+  if(bv){bv.textContent=(bal>0?'+':'')+bal;bv.style.color=balColor;}
+  if(bs){bs.textContent=balLabel;}
 }
 
 // ── TELEGRAM INIT ──
 if(window.Telegram?.WebApp){
   const tg = window.Telegram.WebApp;
-  tg.ready();
-  tg.expand();
-  // adapt colors to Telegram theme
-  document.body.style.background = tg.colorScheme==='light'?'#f5f5f5':'#0d0d14';
+  tg.ready(); tg.expand();
+  document.body.style.background = tg.colorScheme==='light'?'#1a1a1c':'#0c0c0e';
 }
-// ── INIT ──
 renderHome();
 </script>
 </body>
