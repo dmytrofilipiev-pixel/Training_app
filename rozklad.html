@@ -11,8 +11,8 @@
   :root{
     --bg0:#0c0c0e;--bg1:#141416;--bg2:#1c1c1f;--bg3:#242428;--bg4:#2e2e33;
     --b1:#333338;--b2:#3e3e44;--b3:#4a4a52;
-    --t1:#f2f2f4;--t2:#b8b8c0;--t3:#7a7a84;--t4:#4e4e58;
-    --acc:#e8e8ee;--acc2:#c8c8d4;
+    --t1:#e8e8ea;--t2:#b0b0b6;--t3:#6a6a72;--t4:#3e3e45;
+    --acc:#f0f0f2;--acc2:#c0c0c8;
   }
   body{font-family:'Barlow Condensed',Arial,sans-serif;background:var(--bg0);color:var(--t1);min-height:100vh}
   input,textarea,button{font-family:inherit}
@@ -72,7 +72,7 @@
   .set-input{background:var(--bg3);border:1px solid var(--b2);color:#fff;border-radius:6px;padding:6px 0;font-size:16px;font-weight:700;width:100%;text-align:center}
   .set-input.done{border-color:var(--dc,#555)}
   .set-done-btn{width:36px;height:36px;border-radius:8px;background:var(--bg3);border:2px solid #2e2e3e;color:var(--t4);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
-  .set-done-btn.active{color:var(--bg0);background:var(--acc);border-color:var(--acc)}
+  .set-done-btn.active{color:#0c0c0e;background:var(--acc);border-color:var(--acc)}
   .set-row.completed{opacity:.5}
 
   .extra-box{background:var(--bg1);border:1px solid var(--b1);border-radius:10px;padding:14px;margin-bottom:10px}
@@ -156,6 +156,17 @@
   .samsung-note{background:var(--bg2);border:1px solid var(--b2);border-radius:10px;padding:12px;margin-bottom:12px}
   .samsung-note-title{font-size:11px;font-weight:800;color:var(--t2);letter-spacing:1px;margin-bottom:5px}
   .samsung-note-text{font-size:12px;color:var(--t3);font-family:'Barlow',sans-serif;line-height:1.6}
+  .meal-add-row{display:flex;gap:8px;margin-bottom:10px}
+  .meal-add-input{flex:1;background:var(--bg3);border:1px solid var(--b2);color:var(--t1);border-radius:8px;padding:10px 14px;font-size:18px;font-weight:700;font-family:'Barlow Condensed',sans-serif;text-align:center}
+  .meal-add-btn{background:var(--acc);color:#0c0c0e;border:none;border-radius:8px;padding:10px 18px;font-size:16px;font-weight:800;cursor:pointer;white-space:nowrap;font-family:inherit}
+  .meal-list{margin-bottom:10px}
+  .meal-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg2);border:1px solid var(--b1);border-radius:8px;margin-bottom:5px}
+  .meal-kcal{font-size:15px;font-weight:700;color:var(--t1)}
+  .meal-time{font-size:11px;color:var(--t3)}
+  .meal-del{background:none;border:none;color:var(--t4);font-size:16px;cursor:pointer;padding:0 4px}
+  .meal-total{text-align:center;padding:10px;background:var(--bg2);border-radius:8px;margin-bottom:10px;border:1px solid var(--b1)}
+  .meal-total-val{font-size:26px;font-weight:800;color:var(--t1)}
+  .meal-total-label{font-size:11px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
   .health-hist-card{background:var(--bg1);border:1px solid var(--b1);border-radius:10px;padding:12px;margin-bottom:8px}
   .health-hist-date{font-size:11px;color:var(--t4);margin-bottom:8px}
   .health-hist-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0}
@@ -176,7 +187,7 @@
     </div>
     <div class="topnav-btns" id="navBtns">
       <button class="nav-btn" onclick="showPage('calendar')">📅</button>
-      <button class="nav-btn" onclick="showPage('health')">🩺</button>
+      <button class="nav-btn" onclick="showPage('health')">🍽</button>
       <button class="nav-btn" onclick="showPage('history')">ЖУРНАЛ</button>
       <button class="nav-btn" onclick="showPage('stats')">ПРОГРЕС</button>
     </div>
@@ -377,7 +388,7 @@ function showPage(name){
   document.getElementById('backBtn').style.display = name==='home'?'none':'block';
   document.getElementById('navBtns').style.display = name==='home'?'flex':'none';
   currentPage = name;
-  const titles = {home:'⚡ ЩОДЕННИК',log:'💪 ТРЕНУВАННЯ',history:'📋 ЖУРНАЛ',stats:'📊 ПРОГРЕС',calendar:'📅 КАЛЕНДАР',health:'🩺 ЗДОРОВ\u2019Я'};
+  const titles = {home:'⚡ ЩОДЕННИК',log:'💪 ТРЕНУВАННЯ',history:'📋 ЖУРНАЛ',stats:'📊 ПРОГРЕС',calendar:'📅 КАЛЕНДАР',health:'🍽 БАЛАНС КАЛОРІЙ'};
   document.getElementById('navTitle').textContent = titles[name]||''
   if(name==='home') renderHome();
   if(name==='history') renderHistory();
@@ -509,7 +520,7 @@ function renderLog(){
     <div class="extra-label">📝 Нотатки</div>
     <textarea class="notes-input" placeholder="Як відчував себе? Що болить? Що покращити..." oninput="currentForm.notes=this.value">${f.notes}</textarea>
   </div>
-  <button class="save-btn" style="background:var(--acc);color:var(--bg0);box-shadow:none" onclick="saveLog()">✅ ЗБЕРЕГТИ ТРЕНУВАННЯ</button>`;
+  <button class="save-btn" style="background:var(--acc);color:#0c0c0e;box-shadow:none" onclick="saveLog()">✅ ЗБЕРЕГТИ ТРЕНУВАННЯ</button>`;
   document.getElementById('logContent').innerHTML = html;
 }
 function updateSet(ei,si,field,val){
@@ -678,7 +689,7 @@ function showCalDay(ds){
     const done = (log.exercises||[]).reduce((a,ex)=>a+ex.sets.filter(s=>s.done).length,0);
     return `<div class="cal-detail" style="border-left:3px solid var(--b3)">
       <div class="cal-detail-title" style="color:var(--t2)">${log.dayLabel}</div>
-      <div class="cal-detail-meta">${done} підходів · ${vol?vol ? vol+' кг загального об&#39;єму · ' : ''}${log.cardioMin||0} хв кардіо${log.burned?' · 🔥 '+log.burned+' ккал':''}</div>
+      <div class="cal-detail-meta">${done} підходів · ${vol?vol+' кг загального об&#39;єму · ':''}${log.cardioMin||0} хв кардіо${log.burned?' · 🔥 '+log.burned+' ккал':''}</div>
       ${log.notes?`<div style="font-size:12px;color:var(--t3);margin-top:6px;font-style:italic">"${log.notes}"</div>`:''}
     </div>`;
   }).join('');
@@ -689,80 +700,102 @@ function showCalDay(ds){
 let healthTab = 'log';
 function renderHealth(){
   const today = todayKey();
-  const todayH = DB.health.find(h=>h.date===today)||{date:today,consumed:0,burned:0,sleep:0,notes:''};
-  const bal = (todayH.consumed||0)-(todayH.burned||0);
-  const balColor = bal>300?'var(--t2)':bal<-200?'var(--acc)':'var(--acc)';
-  const balLabel = bal>0?`+${bal} ккал (надлишок)`:bal<0?`${bal} ккал (дефіцит)`:'Баланс нульовий';
+  const todayH = DB.health.find(h=>h.date===today)||{date:today,meals:[],burned:0};
+  if(!todayH.meals) todayH.meals=[];
+  const consumed = todayH.meals.reduce((a,m)=>a+(m.kcal||0),0);
+  const burned = todayH.burned||0;
+  const bal = consumed - burned;
+  const balColor = bal>200?'var(--t2)':bal<0?'var(--acc)':'var(--t1)';
+  const balLabel = bal>0?`+${bal} ккал (надлишок)`:bal<0?`${bal} ккал (дефіцит)`:'На нулі';
+
+  const mealItems = todayH.meals.map((m,i)=>`
+    <div class="meal-item">
+      <div><div class="meal-kcal">${m.kcal} ккал</div><div class="meal-time">${m.label||''} ${m.time}</div></div>
+      <button class="meal-del" onclick="delMeal(${i})">✕</button>
+    </div>`).join('');
 
   const histHtml = [...DB.health].reverse().map(h=>{
-    const b = (h.consumed||0)-(h.burned||0);
-    const bc = 'var(--t2)';
+    const hMeals = h.meals||[];
+    const hConsumed = hMeals.reduce((a,m)=>a+(m.kcal||0), h.consumed||0);
+    const hBurned = h.burned||0;
+    const hBal = hConsumed - hBurned;
+    const bc = hBal>200?'var(--t2)':hBal<0?'var(--acc)':'var(--t1)';
     return `<div class="health-hist-card">
       <div class="health-hist-date">${fmtDate(h.date+'T12:00:00')}</div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;font-size:12px">
-        ${h.consumed?`<div style="color:var(--t3)">🍽 <b style="color:var(--t2)">${h.consumed}</b> ккал</div>`:''}
-        ${h.burned?`<div style="color:var(--t3)">🔥 <b style="color:var(--t2)">${h.burned}</b> ккал</div>`:''}
-        ${b?`<div style="color:var(--t3)">⚖ <b style="color:${bc}">${b>0?'+':''
-}${b}</b></div>`:''}
-        ${h.sleep?`<div style="color:var(--t3)">😴 <b style="color:var(--t2)">${h.sleep}</b> год</div>`:''}
+        ${hConsumed?`<div style="color:var(--t3)">🍽 <b style="color:var(--t2)">${hConsumed}</b> ккал</div>`:''}
+        ${hBurned?`<div style="color:var(--t3)">🔥 <b style="color:var(--t2)">${hBurned}</b> ккал</div>`:''}
+        ${hBal?`<div style="color:var(--t3)">⚖ <b style="color:${bc}">${hBal>0?'+':''}${hBal}</b></div>`:''}
       </div>
-      ${h.notes?`<div style="font-size:11px;color:var(--t4);margin-top:6px;font-style:italic">"${h.notes}"</div>`:''}
+      ${hMeals.length?`<div style="font-size:11px;color:var(--t4);margin-top:5px">${hMeals.map(m=>m.kcal+' ккал').join(' · ')}</div>`:''}
     </div>`;
   }).join('');
 
   document.getElementById('healthContent').innerHTML=`
     <div class="health-tabs">
-      <div class="htab${healthTab==='log'?' active':''}" onclick="healthTab='log';renderHealth()">📥 Ввести дані</div>
+      <div class="htab${healthTab==='log'?' active':''}" onclick="healthTab='log';renderHealth()">🍽 Сьогодні</div>
       <div class="htab${healthTab==='hist'?' active':''}" onclick="healthTab='hist';renderHealth()">📊 Журнал</div>
     </div>
     ${healthTab==='log'?`
     <div class="kcal-balance">
       <div class="kcal-balance-label">Баланс сьогодні</div>
-      <div class="kcal-balance-val" style="color:${balColor}">${bal>0?'+':''
-}${bal}</div>
+      <div class="kcal-balance-val" style="color:${balColor}">${bal>0?'+':''}${bal}</div>
       <div class="kcal-balance-sub">${balLabel}</div>
     </div>
-    <div class="samsung-note">
-      <div class="samsung-note-title">📱 SAMSUNG HEALTH</div>
-      <div class="samsung-note-text">Відкрий Samsung Health → переглянь витрачені калорії за тренування → введи сюди вручну. Кроки і пульс — також із додатку. Автоматична синхронізація потребує Android-додатку.</div>
+    <div class="section-label" style="margin-top:14px">+ Додати прийом їжі</div>
+    <div class="meal-add-row">
+      <input type="number" class="meal-add-input" id="mealKcal" placeholder="ккал" min="0">
+      <input type="text" class="meal-add-input" id="mealLabel" placeholder="назва (необов)" style="font-size:14px;font-weight:400">
+      <button class="meal-add-btn" onclick="addMeal()">+ Додати</button>
     </div>
-    <div class="health-grid">
-      <div class="health-field">
-        <div class="health-label">🍽 Спожито ккал</div>
-        <input type="number" class="health-input" id="hConsumed" value="${todayH.consumed||''}" placeholder="0" oninput="saveHealth()">
-        <div class="health-unit">ккал / день</div>
+    <div class="meal-list">${mealItems||'<div style="color:var(--t4);font-size:12px;text-align:center;padding:8px">Ще нічого не додано сьогодні</div>'}</div>
+    ${consumed?`<div class="meal-total"><div class="meal-total-label">Всього спожито</div><div class="meal-total-val">${consumed} ккал</div></div>`:''}
+    <div class="health-grid" style="margin-top:4px">
+      <div class="health-field full">
+        <div class="health-label">🔥 Витрачено ккал (з годинника Samsung)</div>
+        <input type="number" class="health-input" id="hBurned" value="${burned||''}" placeholder="0" oninput="saveBurned()">
+        <div class="health-unit">ккал за тренування</div>
       </div>
-      <div class="health-field">
-        <div class="health-label">🔥 Витрачено ккал</div>
-        <input type="number" class="health-input" id="hBurned" value="${todayH.burned||''}" placeholder="0" oninput="saveHealth()">
-        <div class="health-unit">ккал (годинник)</div>
-      </div>
-      <div class="health-field">
-        <div class="health-label">😴 Сон</div>
-        <input type="number" class="health-input" id="hSleep" value="${todayH.sleep||''}" placeholder="0" step="0.5" oninput="saveHealth()">
-        <div class="health-unit">годин</div>
-      </div>
-
     </div>`:`
-    ${histHtml||'<div class="empty-state"><div class="empty-icon">🩺</div><div class="empty-text">Ще немає записів здоров&#39;я.<br>Заповни сьогоднішні дані!</div></div>'}
+    ${histHtml||'<div class="empty-state"><div class="empty-icon">🍽</div><div class="empty-text">Ще немає записів.<br>Почни додавати їжу сьогодні!</div></div>'}
     `}`;
 }
-function saveHealth(){
-  const today = todayKey();
-  const entry = {
-    date:today,
-    consumed:+document.getElementById('hConsumed')?.value||0,
-    burned:+document.getElementById('hBurned')?.value||0,
-    sleep:+document.getElementById('hSleep')?.value||0,
 
-  };
-  const idx = DB.health.findIndex(h=>h.date===today);
-  if(idx>=0) DB.health[idx]=entry; else DB.health.push(entry);
+function addMeal(){
+  const kcal = +document.getElementById('mealKcal')?.value||0;
+  if(!kcal) return;
+  const label = document.getElementById('mealLabel')?.value||'';
+  const now = new Date();
+  const time = now.toLocaleTimeString('uk-UA',{hour:'2-digit',minute:'2-digit'});
+  const today = todayKey();
+  let todayH = DB.health.find(h=>h.date===today);
+  if(!todayH){todayH={date:today,meals:[],burned:0};DB.health.push(todayH);}
+  if(!todayH.meals) todayH.meals=[];
+  todayH.meals.push({kcal,label,time});
   save(DB);
-  // update balance display
-  const bal = entry.consumed - entry.burned;
-  const balColor = bal>300?'var(--t2)':bal<-200?'var(--acc)':'var(--acc)';
-  const balLabel = bal>0?`+${bal} ккал (надлишок)`:bal<0?`${bal} ккал (дефіцит)`:'Баланс нульовий';
+  document.getElementById('mealKcal').value='';
+  document.getElementById('mealLabel').value='';
+  renderHealth();
+}
+
+function delMeal(idx){
+  const today = todayKey();
+  const todayH = DB.health.find(h=>h.date===today);
+  if(todayH?.meals) todayH.meals.splice(idx,1);
+  save(DB);
+  renderHealth();
+}
+
+function saveBurned(){
+  const today = todayKey();
+  let todayH = DB.health.find(h=>h.date===today);
+  if(!todayH){todayH={date:today,meals:[],burned:0};DB.health.push(todayH);}
+  todayH.burned = +document.getElementById('hBurned')?.value||0;
+  save(DB);
+  const consumed = (todayH.meals||[]).reduce((a,m)=>a+(m.kcal||0),0);
+  const bal = consumed - todayH.burned;
+  const balColor = bal>200?'var(--t2)':bal<0?'var(--acc)':'var(--t1)';
+  const balLabel = bal>0?`+${bal} ккал (надлишок)`:bal<0?`${bal} ккал (дефіцит)`:'На нулі';
   const bv = document.querySelector('.kcal-balance-val');
   const bs = document.querySelector('.kcal-balance-sub');
   if(bv){bv.textContent=(bal>0?'+':'')+bal;bv.style.color=balColor;}
